@@ -16,6 +16,9 @@ buildscript {
     }
 }
 
+apply plugin: 'rup-java'
+apply plugin: 'rup-idea'
+
 allprojects {
     group = 'com.copyright.rup.liquibase'
 }
