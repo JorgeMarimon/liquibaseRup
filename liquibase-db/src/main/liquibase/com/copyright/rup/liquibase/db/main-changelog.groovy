@@ -1,5 +1,3 @@
-package com.copyright.rup.liquibase.party.db
-
 databaseChangeLog {
     property(file: 'database.properties')
 
