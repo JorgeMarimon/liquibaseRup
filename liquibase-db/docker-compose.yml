@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+  db:
+    container_name: liquibase-party-db
+    image: postgres:10.6
+    build: .
+    environment:
+      POSTGRES_USER: rup
+      POSTGRES_PASSWORD: rup
+    ports:
+      - 5432:5432

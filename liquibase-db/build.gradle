@@ -1,0 +1,17 @@
+apply plugin: 'rup-postgres'
+
+rupPostgres {
+    commonScripts {
+        enabled = true
+        version = '30.0.2'
+    }
+
+    mainChangelog = 'com/copyright/rup/liquibase/db/main-party-changelog.groovy'
+    schemaSpy {
+        schema = 'apps'
+    }
+}
+
+dependencies {
+    implementation "org.postgresql:postgresql:42.7.3"
+}
