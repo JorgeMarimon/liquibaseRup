@@ -7,16 +7,7 @@ databaseChangeLog {
             sqlCheck(expectedResult: '0', sql: "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'OldSystemPOC'")
         }
 
-        sql('''
-            DO $$
-            BEGIN
-                IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'OldSystemPOC') THEN
-                        CREATE TABLE OldSystemPOC (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, surname VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL
-                    );
-                END IF;
-            END
-            $$;
-        ''')
+        sql('CREATE TABLE IF NOT EXISTS OldSystemPOC (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, surname VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL);')
 
         rollback {
             sql('DROP TABLE IF EXISTS OldSystemPOC;')
