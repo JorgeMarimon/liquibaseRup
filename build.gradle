@@ -1,0 +1,21 @@
+buildscript {
+
+    gradle.ext.repos = {
+        maven { url rupRepoExtUrl }
+        ivy { url rupRepoReleaseUrl }
+        if (project.hasProperty('developPlugins')) {
+            ivy { url file(System.getProperty('user.home') + '/.ivylocal') }
+        }
+    }
+
+    gradle.ext.pluginsDependency = "com.copyright.rup.scm.gradle.plugins:rup-gradle-plugins:${rupGradlePluginsVersion}"
+
+    repositories(gradle.repos)
+    dependencies {
+        classpath(gradle.pluginsDependency)
+    }
+}
+
+allprojects {
+    group = 'com.copyright.rup.liquibase'
+}

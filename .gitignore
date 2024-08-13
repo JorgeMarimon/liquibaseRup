@@ -1,0 +1,22 @@
+# Directories
+bin/
+build/
+out/
+rfn_db*/
+.idea/
+.classpath/
+.project/
+.settings/
+.gradle/
+*/out/
+postgres-data/
+
+# Files
+.DS_Store
+*.iml
+.project
+.classpath
+resources/proxy/.cookieJar
+resources/proxy/.headers
+resources/proxy/nginx.conf
+.eslintcache
