@@ -1,11 +1,20 @@
+package com.copyright.rup.liquibase.db
+
 databaseChangeLog {
+
     changeSet(id: '2024-08-12-02', author: 'Jorge Marimón <jmarimon@copyright.com>', runInTransaction: true) {
         comment('Inserting a record into OldSystemPOC')
 
-        sql('INSERT INTO OldSystemPOC (name, surname, email) VALUES (\'Jorge\', \'Marimon\', \'jmarimon@copyright.com\');')
+        insert(tableName: 'OldSystemPOC') {
+            column(name: 'name', value: 'Jorge')
+            column(name: 'surname', value: 'Marimon')
+            column(name: 'email', value: 'jmarimon@copyright.com')
+        }
 
         rollback {
-            sql('DELETE FROM OldSystemPOC WHERE email = \'jmarimon@copyright.com\';')
+            delete(tableName: 'OldSystemPOC') {
+                where("email = 'jmarimon@copyright.com'")
+            }
         }
     }
 }

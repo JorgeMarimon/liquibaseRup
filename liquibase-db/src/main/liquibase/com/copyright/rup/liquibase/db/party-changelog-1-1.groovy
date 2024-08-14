@@ -1,11 +1,27 @@
+package com.copyright.rup.liquibase.db
+
 databaseChangeLog {
-    changeSet(id: '2024-08-12-01', author: 'Jorge Marimón <jmarimon@copyright.com>', runInTransaction: true) {
+
+    changeSet(id: '2024-08-12-01', author: 'Jorge Marimón <jmarimon@copyright.com>',runInTransaction: true) {
         comment('Creating the table OldSystemPOC')
 
-        sql('CREATE TABLE IF NOT EXISTS OldSystemPOC (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, surname VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL);')
+        createTable(tableName: 'OldSystemPOC') {
+            column(name: 'id', type: 'SERIAL', autoIncrement: true) {
+                constraints(primaryKey: true, nullable: false)
+            }
+            column(name: 'name', type: 'VARCHAR(255)') {
+                constraints(nullable: false)
+            }
+            column(name: 'surname', type: 'VARCHAR(255)') {
+                constraints(nullable: false)
+            }
+            column(name: 'email', type: 'VARCHAR(255)') {
+                constraints(nullable: false)
+            }
+        }
 
         rollback {
-            sql('DROP TABLE OldSystemPOC')
+            dropTable(tableName: 'OldSystemPOC')
         }
     }
 }
