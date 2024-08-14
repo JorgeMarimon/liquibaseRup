@@ -2,8 +2,15 @@ package com.copyright.rup.liquibase.db
 
 databaseChangeLog {
 
-    changeSet(id: '2024-08-12-01', author: 'Jorge Marimón <jmarimon@copyright.com>',runInTransaction: true) {
-        comment('Creating the table OldSystemPOC')
+    changeSet(id: '2024-08-12-01', author: 'Jorge Marimón <jmarimon@copyright.com>', runInTransaction: true) {
+        comment('Creating the table OldSystemPOC if it does not already exist')
+
+        preConditions(onFail: 'MARK_RAN', onError: 'CONTINUE') {
+            not {
+                tableExists(tableName: 'OldSystemPOC')
+            }
+        }
+
 
         createTable(tableName: 'OldSystemPOC') {
             column(name: 'id', type: 'SERIAL', autoIncrement: true) {
